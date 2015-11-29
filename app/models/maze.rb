@@ -1,9 +1,8 @@
 class Maze
-
-  attr_reader :sequence, :width, :height
-
   DIRECTIONS = [:U, :D, :R, :L]
   OPPOSITE   = { :U => :D, :D => :U, :R => :L, :L => :R }
+
+  attr_reader :sequence, :width, :height
 
   def initialize(width = 10, height = 10)
     @width  = width
@@ -25,7 +24,7 @@ class Maze
 
       if inside_grid?(next_x, next_y) && not_visited?(next_x, next_y)
         mark_visited next_x, next_y
-        @sequence.push({[current_x, current_y, direction] => [next_x, next_y, OPPOSITE[direction]]})
+        @sequence.push({ [current_x, current_y, direction] => [next_x, next_y, OPPOSITE[direction]] })
         carve_passages_from next_x, next_y
       end
     end
