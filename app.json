@@ -9,8 +9,8 @@
     "Font Awesome",
     "Nitrous.IO"
   ],
-  "website": "http://ruby2-rails4-bootstrap-heroku.herokuapp.com/",
-  "repository": "https://github.com/diowa/ruby2-rails4-bootstrap-heroku",
+  "website": "http://amazed.herokuapp.com/",
+  "repository": "https://github.com/diowa/amazed",
   "success_url": "/",
   "env": {
     "NEW_RELIC_APP_NAME": {
