@@ -1,6 +1,6 @@
 class Maze
   DIRECTIONS = [:U, :D, :R, :L]
-  OPPOSITE   = { :U => :D, :D => :U, :R => :L, :L => :R }
+  OPPOSITE   = { U: :D, D: :U, R: :L, L: :R }
 
   attr_reader :sequence, :width, :height
 
