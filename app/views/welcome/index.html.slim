@@ -1,0 +1,28 @@
+- title t('hello')
+
+.container
+  .row
+    .col-sm-8.col-sm-offset-2
+      h1.text-center
+        | Amazed
+      p
+        | Amazed is an application that creates perfect mazes using the recursive backtracker algorithm.
+      p
+        | Amazed has been developed using the following technology stack:
+      ul
+        li Ruby
+        li Rails
+        li RSpec
+        li Bootstrap
+        li Heroku
+      p
+        | Update the page to see different mazes.
+
+  .row
+    .col-sm-6.col-sm-offset-3
+      table
+        - @maze.height.times do |y|
+          tr
+            - @maze.width.times do |x|
+              td.maze-cell style=style_for_cell(x, y)
+                .small= "#{x},#{y}"
