@@ -7,22 +7,25 @@ module ApplicationHelper
     content_for?(section) ? content_for(section) : default
   end
 
-  def style_for_cell(x, y)
+  def style_for_cell(cell_position)
     style = []
     @maze.sequence.each do |step_in_sequence|
-      set_style_from_step(style, step_in_sequence, x, y)
+      set_style_from_step(style, step_in_sequence, cell_position)
+    end
+    @maze.solution.each do |step_in_solution|
+      style << 'background: #7AF7A1;' if step_in_solution == cell_position
     end
     style.join
   end
 
-  def set_style_from_step(style, step_in_sequence, x, y)
+  def set_style_from_step(style, step_in_sequence, cell_position)
     direction = direction_from_step(step_in_sequence.keys)
     position = position_from_step(step_in_sequence.keys)
-    style << border_from(direction) if position == [x, y]
+    style << border_from(direction) if position == cell_position
 
     direction = direction_from_step(step_in_sequence.values)
     position = position_from_step(step_in_sequence.values)
-    style << border_from(direction) if position == [x, y]
+    style << border_from(direction) if position == cell_position
   end
 
   def position_from_step(step_in_sequence)
@@ -43,27 +46,6 @@ module ApplicationHelper
       'border-left: 0;'
     when :R
       'border-right: 0;'
-    end
-  end
-
-  def show_solution
-    solution = []
-    @maze.solution.each do |direction|
-      solution << direction_text_from(direction)
-    end
-    solution.join ' -> '
-  end
-
-  def direction_text_from(direction)
-    case direction
-    when :U
-      'Up'
-    when :D
-      'Down'
-    when :L
-      'Left'
-    when :R
-      'Right'
     end
   end
 end

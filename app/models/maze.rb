@@ -19,6 +19,7 @@ class Maze
     @final_y = final_y
     @solution_found = false
     mark_point_visited @initial_x, @initial_y
+    @solution << [@initial_x, @initial_y]
     carve_passages_from @initial_x, @initial_y
   end
 
@@ -28,7 +29,7 @@ class Maze
     DIRECTIONS.shuffle.each do |direction|
       next_x, next_y = next_position(current_x, current_y, direction)
       next unless point_inside_grid?(next_x, next_y) && point_not_visited?(next_x, next_y)
-      @solution << direction unless @solution_found
+      @solution << [next_x, next_y] unless @solution_found
       @solution_found = true if ending_point?(next_x, next_y)
       mark_point_visited next_x, next_y
       @sequence << { [current_x, current_y, direction] => [next_x, next_y, OPPOSITE[direction]] }

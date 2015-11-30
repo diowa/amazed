@@ -24,10 +24,12 @@ describe Maze do
       expect(maze.instance_variable_get(:@solution_found)).to be false
     end
 
-    it "marks visited the starting point and than starts carving" do
+    it "marks visited the starting point and stores it in the solution, than starts carving" do
       maze = Maze.new(4, 4)
       expect(maze).to receive(:carve_passages_from).with(3, 1)
       maze.construct_and_solve(3, 1)
+      expect(maze.send(:point_not_visited?, 3, 1)).to eq false
+      expect(maze.solution).to include [3,1]
       expect(maze.instance_variable_get(:@grid)[1][3]).to eq true
       expect(maze.instance_variable_get(:@grid)[0][0]).to eq false
     end

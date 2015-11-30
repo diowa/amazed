@@ -27,13 +27,9 @@
 
   .row
     .col-sm-6.col-sm-offset-3
-      table
+      table.table-responsive
         - @maze.height.times do |y|
           tr
             - @maze.width.times do |x|
-              td.maze-cell style=style_for_cell(x, y)
+              td.maze-cell style=style_for_cell([x, y])
                 .small= "#{x},#{y}"
-  .row
-    .col-sm-8.col-sm-offset-2
-      h3 Solution from point [#{@maze.initial_x}, #{@maze.initial_y}] to point [#{@maze.final_x}, #{@maze.final_y}]:
-      = show_solution
