@@ -10,13 +10,20 @@
       p
         | Amazed has been developed using the following technology stack:
       ul
-        li Ruby
-        li Rails
-        li RSpec
-        li Bootstrap
-        li Heroku
+        li Ruby 2.2.3
+        li Rails 4.2.5
+        li RSpec 4
+        li Twitter Bootstrap for Sass 3.3.6
+        li Autoprefixer
+        li Font Awesome 4.5.0
+        li SLIM
+        li RuboCop
       p
-        | Update the page to see different mazes.
+        | Source code available at:
+        = " "
+        = link_to "https://github.com/diowa/amazed"
+
+      h3 Update the page to see different mazes.
 
   .row
     .col-sm-6.col-sm-offset-3
@@ -26,11 +33,7 @@
             - @maze.width.times do |x|
               td.maze-cell style=style_for_cell(x, y)
                 .small= "#{x},#{y}"
-  br
-  br
   .row
     .col-sm-8.col-sm-offset-2
-      | Solution from point [#{@maze.initial_x}, #{@maze.initial_y}] to point [#{@maze.final_x}, #{@maze.final_y}]:
-      br
-      br
+      h3 Solution from point [#{@maze.initial_x}, #{@maze.initial_y}] to point [#{@maze.final_x}, #{@maze.final_y}]:
       = show_solution

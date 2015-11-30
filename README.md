@@ -4,7 +4,7 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
-Application to create and solve a maze based on the following technology stack:
+Application to create and solve perfect mazes based on the following technology stack:
 
 * [Ruby 2.2.3][1]
 * [Rails 4.2.5][2]
