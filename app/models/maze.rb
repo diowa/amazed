@@ -21,12 +21,10 @@ class Maze
   def carve_passages_from(current_x, current_y)
     DIRECTIONS.shuffle.each do |direction|
       next_x, next_y = next_position(current_x, current_y, direction)
-
-      if inside_grid?(next_x, next_y) && not_visited?(next_x, next_y)
-        mark_visited next_x, next_y
-        @sequence.push({ [current_x, current_y, direction] => [next_x, next_y, OPPOSITE[direction]] })
-        carve_passages_from next_x, next_y
-      end
+      next unless inside_grid?(next_x, next_y) && not_visited?(next_x, next_y)
+      mark_visited next_x, next_y
+      @sequence << { [current_x, current_y, direction] => [next_x, next_y, OPPOSITE[direction]] }
+      carve_passages_from next_x, next_y
     end
   end
 
