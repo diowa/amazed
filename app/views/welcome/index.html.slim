@@ -6,7 +6,7 @@
       h1.text-center
         | Amazed
       p
-        | Amazed is an application that creates perfect mazes using the recursive backtracker algorithm.
+        | Amazed is an application that creates and solves perfect mazes using the recursive backtracker algorithm.
       p
         | Amazed has been developed using the following technology stack:
       ul
@@ -26,3 +26,11 @@
             - @maze.width.times do |x|
               td.maze-cell style=style_for_cell(x, y)
                 .small= "#{x},#{y}"
+  br
+  br
+  .row
+    .col-sm-8.col-sm-offset-2
+      | Solution from point [#{@maze.initial_x}, #{@maze.initial_y}] to point [#{@maze.final_x}, #{@maze.final_y}]:
+      br
+      br
+      = show_solution

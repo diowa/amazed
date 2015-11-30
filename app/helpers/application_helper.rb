@@ -32,4 +32,25 @@ module ApplicationHelper
       'border-right: 0;'
     end
   end
+
+  def show_solution
+    solution = []
+    @maze.solution.each do |direction|
+      solution << direction(direction)
+    end
+    solution.join ', '
+  end
+
+  def direction(direction)
+    case direction
+    when :U
+      'Up'
+    when :D
+      'Down'
+    when :L
+      'Left'
+    when :R
+      'Right'
+    end
+  end
 end
