@@ -8,19 +8,17 @@ class Maze
     @width  = width
     @height = height
     @grid = Array.new(height) { Array.new(width, false) }
-    @carving_steps = []
-    @solution_steps = []
   end
 
   def construct_and_solve(initial_x = 0, initial_y = 0, final_x = 9, final_y = 9)
+    return false unless point_inside_grid?(initial_x, initial_y) && point_inside_grid?(final_x, final_y)
     @initial_x = initial_x
     @initial_y = initial_y
     @final_x = final_x
     @final_y = final_y
-    @solution_found = false
-    return false unless point_inside_grid?(initial_x, initial_y) && point_inside_grid?(final_x, final_y)
+    @carving_steps = []
     mark_point_visited initial_x, initial_y
-    @solution_steps << [initial_x, initial_y]
+    @solution_steps = [[initial_x, initial_y]]
     carve_passages_from initial_x, initial_y
     @solution_found
   end
@@ -32,8 +30,8 @@ class Maze
       next_x, next_y = next_position(current_x, current_y, direction)
       next unless point_inside_grid?(next_x, next_y) && point_not_visited?(next_x, next_y)
       mark_point_visited next_x, next_y
-      @carving_steps << { [current_x, current_y, direction] => [next_x, next_y, OPPOSITE[direction]] }
-      @solution_steps << [next_x, next_y] unless @solution_found
+      @carving_steps.push [current_x, current_y, direction], [next_x, next_y, OPPOSITE[direction]]
+      @solution_steps.push [next_x, next_y] unless @solution_found
       @solution_found = true if ending_point?(next_x, next_y)
       carve_passages_from next_x, next_y
       @solution_steps.pop unless @solution_found
@@ -58,14 +56,10 @@ class Maze
 
   def next_position(x, y, direction)
     case direction
-    when :U
-      [x, y - 1]
-    when :D
-      [x, y + 1]
-    when :L
-      [x - 1, y]
-    when :R
-      [x + 1, y]
+    when :U then [x, y - 1]
+    when :D then [x, y + 1]
+    when :L then [x - 1, y]
+    when :R then [x + 1, y]
     end
   end
 end
